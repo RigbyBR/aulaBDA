@@ -66,3 +66,11 @@ CREATE TABLE treabalha_em
     horas  DECIMAL(5,2),
     PRIMARY KEY (pnumero, fident)
 );
+
+CREATE TABLE chamada
+(
+    prontuario VARCHAR(15),
+    nome VARCHAR(50),
+    time_coracao VARCHAR(50),
+    PRIMARY KEY(prontuario)
+);
