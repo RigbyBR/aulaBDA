@@ -1,20 +1,37 @@
+\c postgres;
+DROP DATABASE IF EXISTS empresa;
+
 CREATE DATABASE empresa;
+
+\c empresa;
 
 CREATE DOMAIN TIPO_ID AS CHAR(4);
 CREATE DOMAIN D_NUM AS INTEGER
 CHECK (VALUE > 0 AND VALUE < 21);
 
+CREATE TABLE departamento
+(
+    numero TIPO_ID,
+    nome VARCHAR(15) NOT NULL,
+    gident TIPO_ID,
+    dtInicio DATE,
+    PRIMARY KEY (numero)
+);
+   
 CREATE TABLE funcionario
 (
-    indebt TIPO_ID,
+    ident TIPO_ID,
     nome VARCHAR(15) NOT NULL,
     sobrenome VARCHAR(20) NOT NULL,
     endereço VARCHAR(30) NOT NULL,
     dtnasc DATE,
     salario DECIMAL(10,2),
     sexo VARCHAR(15),
+    supident TIPO_ID,
     dnumero TIPO_ID NOT NULL,
-    PRIMARY KEY (ident)
+    PRIMARY KEY (ident),
+    FOREIGN KEY (supident) REFERENCES funcionario(ident),
+    FOREIGN KEY (dnumero) REFERENCES departamento(numero)
 );
 
 CREATE TABLE dependente
@@ -25,15 +42,6 @@ CREATE TABLE dependente
     sexo VARCHAR(15),
     relacionamento VARCHAR(19),
     PRIMARY KEY (fident, nome)
-);
-
-CREATE TABLE departamento
-(
-    numero TIPO_ID,
-    nome VARCHAR(15) NOT NULL,
-    gident TIPO_ID,
-    dtInicio DATE,
-    PRIMARY KEY (numero)
 );
 
 CREATE TABLE localizacoes
