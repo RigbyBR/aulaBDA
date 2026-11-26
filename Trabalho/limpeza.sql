@@ -1,0 +1,8 @@
+SET client_encoding TO 'UTF8';
+
+DROP TABLE IF EXISTS pagamento;
+DROP TABLE IF EXISTS estadia;
+DROP TABLE IF EXISTS veiculo;
+DROP TABLE IF EXISTS vaga;
+DROP TABLE IF EXISTS categoria_veiculo;
+DROP TABLE IF EXISTS cliente;
